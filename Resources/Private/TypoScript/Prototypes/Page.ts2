@@ -1,0 +1,13 @@
+prototype(Page) {
+    head {
+        javascripts {
+            mrfGoogleMaps = TYPO3.TypoScript:Tag {
+                @position = 'start 150'
+                tagName = 'script'
+                attributes {
+                    src = 'https://maps.googleapis.com/maps/api/js?sensor=false'
+                }
+            }
+        }
+    }
+}

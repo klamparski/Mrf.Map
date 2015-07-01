@@ -1,0 +1,4 @@
+prototype(Mrf.Map:GoogleMapMarker) >
+prototype(Mrf.Map:GoogleMapMarker) < prototype(TYPO3.Neos:Content) {
+    templatePath = 'resource://Mrf.Map/Private/Templates/NodeTypes/GoogleMapMarker.html'
+}

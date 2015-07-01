@@ -1,0 +1,114 @@
+'Mrf.Map:GoogleMap':
+  superTypes:
+    - 'TYPO3.Neos:Content'
+  childNodes:
+    markers:
+      type: 'TYPO3.Neos:ContentCollection'
+      constraints:
+        nodeTypes:
+          '*': FALSE
+          'Mrf.Map:GoogleMapMarker': TRUE
+  ui:
+    label: 'Google Map'
+    icon: 'icon-globe'
+    group: 'mrfMap'
+    inspector:
+      groups:
+        settings:
+          label: 'Settings'
+          position: 90
+  properties:
+    title:
+      type: string
+      defaultValue: 'Map'
+      ui:
+        label: 'Title'
+        inspector:
+          group: 'settings'
+    height:
+      type: string
+      defaultValue: '500px'
+      ui:
+        label: 'Height'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'settings'
+    width:
+      type: string
+      defaultValue: '100%'
+      ui:
+        label: 'Width'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'settings'
+    centerCoordinateX:
+      type: string
+      defaultValue: '0.00000'
+      ui:
+        label: 'Center - coordinate X'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'settings'
+    centerCoordinateY:
+      type: string
+      defaultValue: '0.00000'
+      ui:
+        label: 'Center - coordinate Y'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'settings'
+    zoom:
+      type: string
+      defaultValue: '12'
+      ui:
+        label: 'Zoom level'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'settings'
+#          editor: 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor'
+#          editorOptions:
+#            values:
+#              0:
+#                label: '0'
+#              1:
+#                label: '1'
+#              2:
+#                label: '2'
+#              3:
+#                label: '3'
+#              4:
+#                label: '4'
+#              5:
+#                label: '5'
+#              6:
+#                label: '6'
+#              7:
+#                label: '7'
+#              8:
+#                label: '8'
+#              9:
+#                label: '9'
+#              10:
+#                label: '10'
+#              11:
+#                label: '11'
+#              12:
+#                label: '12'
+#              13:
+#                label: '13'
+#              14:
+#                label: '14'
+#              15:
+#                label: '15'
+#              16:
+#                label: '16'
+#              17:
+#                label: '17'
+#              18:
+#                label: '18'
+#              19:
+#                label: '19'
+#              20:
+#                label: '20'
+#              21:
+#                label: '21'

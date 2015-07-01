@@ -1,0 +1,63 @@
+prototype(Mrf.Map:GoogleMap) >
+prototype(Mrf.Map:GoogleMap) < prototype(TYPO3.Neos:Content) {
+    templatePath = 'resource://Mrf.Map/Private/Templates/NodeTypes/GoogleMap.html'
+
+    mapId = ${'googlemap' + String.md5(node.identifier)}
+
+    map = ${node}
+
+    attributes {
+        id = ${'googlemap' + String.md5(node.identifier)}
+        style = ${'height:' + q(node).property('height') + '; width:' + q(node).property('width') + ';'}
+    }
+
+    markers = TYPO3.Neos:ContentCollection {
+        nodePath = 'markers'
+    }
+
+    jsVars = TYPO3.TypoScript:RawArray {
+        styles = TYPO3.TypoScript:RawArray {
+            0 = TYPO3.TypoScript:RawArray {
+                stylers = TYPO3.TypoScript:RawArray {
+                    0 = TYPO3.TypoScript:RawArray {
+                        saturation = -85
+                    }
+                }
+            }
+
+            1 = TYPO3.TypoScript:RawArray {
+                featureType = 'road'
+                elementType = 'geometry'
+                stylers = TYPO3.TypoScript:RawArray {
+                    0 = TYPO3.TypoScript:RawArray {
+                        hue = '#002bff'
+                    }
+                    1 = TYPO3.TypoScript:RawArray {
+                        visibility = 'simplified'
+                    }
+                }
+            }
+
+            2 = TYPO3.TypoScript:RawArray {
+                featureType = 'road'
+                elementType = 'labels'
+                stylers = TYPO3.TypoScript:RawArray {
+                    0 = TYPO3.TypoScript:RawArray {
+                        visibility = 'off'
+                    }
+                }
+            }
+        }
+
+        mapOptions = TYPO3.TypoScript:RawArray {
+            zoom = ${String.toInteger(q(node).property('zoom'))}
+            scrollwheel = FALSE
+            center = TYPO3.TypoScript:RawArray {
+                lat = ${String.toFloat(q(node).property('centerCoordinateX'))}
+                lng = ${String.toFloat(q(node).property('centerCoordinateY'))}
+            }
+        }
+    }
+
+    markersArray = ${q(node).children('markers').children('[instanceof Mrf.Map:GoogleMapMarker]')}
+}

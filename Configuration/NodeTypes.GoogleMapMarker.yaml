@@ -1,0 +1,36 @@
+'Mrf.Map:GoogleMapMarker':
+  superTypes:
+    - 'TYPO3.Neos:Content'
+  ui:
+    label: 'Google Map Marker'
+    icon: 'icon-map-marker'
+    group: 'mrfMap'
+    inspector:
+      groups:
+        settings:
+          label: 'Settings'
+          position: 90
+  properties:
+    title:
+      type: string
+      defaultValue: 'Marker'
+      ui:
+        label: 'Title'
+        inspector:
+          group: 'settings'
+    coordinateX:
+      type: string
+      defaultValue: '0.000000'
+      ui:
+        reloadIfChanged: TRUE
+        label: 'Coordinate X'
+        inspector:
+          group: 'settings'
+    coordinateY:
+      type: string
+      defaultValue: '0.000000'
+      ui:
+        reloadIfChanged: TRUE
+        label: 'Coordinate Y'
+        inspector:
+          group: 'settings'

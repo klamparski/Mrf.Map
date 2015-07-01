@@ -1,0 +1,31 @@
+<div{attributes -> f:format.raw()}><!-- --></div>
+
+<script type="text/javascript">
+(function($) {
+	$(document).ready(function(){
+		var {mapId}mapOptions = {jsVars.mapOptions -> f:format.json() -> f:format.htmlentitiesDecode()};
+		var {mapId}styles = {jsVars.styles -> f:format.json() -> f:format.htmlentitiesDecode()};
+		var {mapId}styledMap = new google.maps.StyledMapType({mapId}styles, <![CDATA[{]]>name: '{map.properties.title}'<![CDATA[}]]>);
+		var {mapId}map = new google.maps.Map(document.getElementById('{mapId}'), {mapId}mapOptions);
+		var infowindow = new google.maps.InfoWindow();
+
+		<f:for each="{markersArray}" as="marker" iteration="iterator">
+			var {mapId}marker{iterator.index} = new google.maps.Marker(<![CDATA[{]]>
+				position: new google.maps.LatLng({marker.properties.coordinateX}, {marker.properties.coordinateY}),
+				map: {mapId}map,
+				title: '{marker.properties.title}'
+		<![CDATA[}]]>);
+
+		google.maps.event.addListener({mapId}marker{iterator.index}, 'click', (function(marker, content) <![CDATA[{]]>
+			return function() <![CDATA[{]]>
+				infowindow.setContent(content);
+				infowindow.open({mapId}map, marker);
+			<![CDATA[}]]>
+		<![CDATA[}]]>)({mapId}marker{iterator.index}, '{marker.properties.title}'));
+		</f:for>
+
+		{mapId}map.mapTypes.set('map_style', {mapId}styledMap);
+		{mapId}map.setMapTypeId('map_style');
+	});
+})(jQuery);
+</script>

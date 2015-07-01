@@ -1,0 +1,3 @@
+include: resource://Mrf.Map/Private/TypoScript/NodeTypes/GoogleMap.ts2
+include: resource://Mrf.Map/Private/TypoScript/NodeTypes/GoogleMapMarker.ts2
+include: resource://Mrf.Map/Private/TypoScript/Prototypes/Page.ts2

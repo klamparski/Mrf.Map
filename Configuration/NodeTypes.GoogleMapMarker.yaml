@@ -34,3 +34,11 @@
         label: 'Coordinate Y'
         inspector:
           group: 'settings'
+    showInfoWindow:
+      type: boolean
+      defaultValue: 1
+      ui:
+        reloadIfChanged: TRUE
+        label: 'Show Info Window'
+        inspector:
+          group: 'settings'

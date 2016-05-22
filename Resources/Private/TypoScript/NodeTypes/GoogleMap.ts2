@@ -20,33 +20,40 @@ prototype(Mrf.Map:GoogleMap) < prototype(TYPO3.Neos:Content) {
             0 = TYPO3.TypoScript:RawArray {
                 stylers = TYPO3.TypoScript:RawArray {
                     0 = TYPO3.TypoScript:RawArray {
-                        saturation = -85
+                        hue = ${q(node).property('hue')}
+                        lightness = ${String.toFloat(q(node).property('lightness'))}
+                        saturation = ${String.toFloat(q(node).property('saturation'))}
+                        gamma = ${String.toFloat(q(node).property('gamma'))}
+                        invert_lightness = ${String.toInteger(q(node).property('invert_lightness'))}
+                        visibility = ${q(node).property('visibility')}
+                        color = ${q(node).property('color')}
+                        weight = ${String.toInteger(q(node).property('weight'))}
                     }
                 }
             }
 
-            1 = TYPO3.TypoScript:RawArray {
-                featureType = 'road'
-                elementType = 'geometry'
-                stylers = TYPO3.TypoScript:RawArray {
-                    0 = TYPO3.TypoScript:RawArray {
-                        hue = '#002bff'
-                    }
-                    1 = TYPO3.TypoScript:RawArray {
-                        visibility = 'simplified'
-                    }
-                }
-            }
-
-            2 = TYPO3.TypoScript:RawArray {
-                featureType = 'road'
-                elementType = 'labels'
-                stylers = TYPO3.TypoScript:RawArray {
-                    0 = TYPO3.TypoScript:RawArray {
-                        visibility = 'off'
-                    }
-                }
-            }
+#            1 = TYPO3.TypoScript:RawArray {
+#                featureType = 'road'
+#                elementType = 'geometry'
+#                stylers = TYPO3.TypoScript:RawArray {
+#                    0 = TYPO3.TypoScript:RawArray {
+#                        hue = '#002bff'
+#                    }
+#                    1 = TYPO3.TypoScript:RawArray {
+#                        visibility = 'simplified'
+#                    }
+#                }
+#            }
+#
+#            2 = TYPO3.TypoScript:RawArray {
+#                featureType = 'road'
+#                elementType = 'labels'
+#                stylers = TYPO3.TypoScript:RawArray {
+#                    0 = TYPO3.TypoScript:RawArray {
+#                        visibility = 'off'
+#                    }
+#                }
+#            }
         }
 
         mapOptions = TYPO3.TypoScript:RawArray {
@@ -57,6 +64,12 @@ prototype(Mrf.Map:GoogleMap) < prototype(TYPO3.Neos:Content) {
                 lng = ${String.toFloat(q(node).property('centerCoordinateY'))}
             }
         }
+
+        styledMapOptions = TYPO3.TypoScript:RawArray {
+            name = ${q(node).property('title')}
+        }
+
+        mapTypeId = ${'google.maps.MapTypeId.' + q(node).property('type')}
     }
 
     markersArray = ${q(node).children('markers').children('[instanceof Mrf.Map:GoogleMapMarker]')}

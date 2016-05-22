@@ -1,31 +1,47 @@
-<div{attributes -> f:format.raw()}><!-- --></div>
+{markers -> f:format.raw()}
+<div{attributes -> f:format.raw()}></div>
 
 <script type="text/javascript">
-(function($) {
-	$(document).ready(function(){
-		var {mapId}mapOptions = {jsVars.mapOptions -> f:format.json() -> f:format.htmlentitiesDecode()};
-		var {mapId}styles = {jsVars.styles -> f:format.json() -> f:format.htmlentitiesDecode()};
-		var {mapId}styledMap = new google.maps.StyledMapType({mapId}styles, <![CDATA[{]]>name: '{map.properties.title}'<![CDATA[}]]>);
-		var {mapId}map = new google.maps.Map(document.getElementById('{mapId}'), {mapId}mapOptions);
-		var infowindow = new google.maps.InfoWindow();
+	var mapId = '{mapId}',
+		mrfMapOptions = mrfMapOptions || [],
+		mrfMapStyles = mrfMapStyles || [],
+		mrfMapStyledMap = mrfMapStyledMap || [],
+		mrfMapInfoWindow = new google.maps.InfoWindow();
 
-		<f:for each="{markersArray}" as="marker" iteration="iterator">
-			var {mapId}marker{iterator.index} = new google.maps.Marker(<![CDATA[{]]>
-				position: new google.maps.LatLng({marker.properties.coordinateX}, {marker.properties.coordinateY}),
-				map: {mapId}map,
-				title: '{marker.properties.title}'
-		<![CDATA[}]]>);
+	mrfMapOptions[mapId] = {jsVars.mapOptions -> f:format.json() -> f:format.htmlentitiesDecode()};
 
-		google.maps.event.addListener({mapId}marker{iterator.index}, 'click', (function(marker, content) <![CDATA[{]]>
-			return function() <![CDATA[{]]>
-				infowindow.setContent(content);
-				infowindow.open({mapId}map, marker);
-			<![CDATA[}]]>
-		<![CDATA[}]]>)({mapId}marker{iterator.index}, '{marker.properties.title}'));
-		</f:for>
+	/*<f:comment>mapTypeId can not be passed as JSON because it's changed to string</f:comment>*/
+	mrfMapOptions[mapId]['mapTypeId'] = {jsVars.mapTypeId};
+	console.log(mrfMapOptions[mapId]);
+	mrfMapStyles[mapId] = {jsVars.styles -> f:format.json() -> f:format.htmlentitiesDecode()};
+	mrfMapStyledMap[mapId] = new google.maps.StyledMapType(mrfMapStyles[mapId], {jsVars.styledMapOptions -> f:format.json() -> f:format.htmlentitiesDecode()});
 
-		{mapId}map.mapTypes.set('map_style', {mapId}styledMap);
-		{mapId}map.setMapTypeId('map_style');
-	});
-})(jQuery);
+	console.log({jsVars.styles -> f:format.json() -> f:format.htmlentitiesDecode()});
+
+	var mrfMapMap = mrfMapMap || [];
+
+	mrfMapMap[mapId] = new google.maps.Map(document.getElementById(mapId), mrfMapOptions[mapId]);
+
+	<f:for each="{markersArray}" as="marker" iteration="iterator">
+	var mrfMapMarkers = mrfMapMarkers || [],
+		markerIndex = {iterator.index};
+	mrfMapMarkers[mapId] = mrfMapMarkers[mapId] || [];
+	mrfMapMarkers[mapId][markerIndex] = new google.maps.Marker(<![CDATA[{]]>
+		position: new google.maps.LatLng({marker.properties.coordinateX}, {marker.properties.coordinateY}),
+		map: mrfMapMap[mapId],
+		title: '{marker.properties.title}'
+	<![CDATA[}]]>);
+
+	<f:if condition="{marker.properties.showInfoWindow}">
+	google.maps.event.addListener(mrfMapMarkers[mapId][markerIndex], 'click', (function(marker, content) <![CDATA[{]]>
+		return function() <![CDATA[{]]>
+			mrfMapInfoWindow.setContent(content);
+			mrfMapInfoWindow.open(mrfMapMap[mapId], marker);
+		<![CDATA[}]]>
+	<![CDATA[}]]>)(mrfMapMarkers[mapId][markerIndex], '{marker.properties.infoWindowContent -> f:format.raw()}'));
+	</f:if>
+	</f:for>
+
+	mrfMapMap[mapId].mapTypes.set('map_style', mrfMapStyledMap[mapId]);
+	mrfMapMap[mapId].setMapTypeId('map_style');
 </script>

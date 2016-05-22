@@ -17,6 +17,15 @@
         settings:
           label: 'Settings'
           position: 90
+        styles:
+          label: 'Styles'
+          position: 100
+          tab: 'styles'
+      tabs:
+        styles:
+          label: 'Styles'
+          position: 10
+          icon: 'icon-tasks'
   properties:
     title:
       type: string
@@ -41,6 +50,26 @@
         reloadIfChanged: TRUE
         inspector:
           group: 'settings'
+    type:
+      type: string
+      defaultValue: 'ROADMAP'
+      ui:
+        label: 'Type'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'settings'
+          editor: 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              ROADMAP:
+                label: 'Roadmap'
+              SATELLITE:
+                label: 'Satellite'
+              HYBRID:
+                label: 'Hybrid'
+              TERRAIN:
+                label: 'Terrain'
+
     centerCoordinateX:
       type: string
       defaultValue: '0.00000'
@@ -58,57 +87,100 @@
         inspector:
           group: 'settings'
     zoom:
-      type: string
-      defaultValue: '12'
+      type: integer
+      defaultValue: 12
       ui:
         label: 'Zoom level'
         reloadIfChanged: TRUE
         inspector:
           group: 'settings'
-#          editor: 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor'
-#          editorOptions:
-#            values:
-#              0:
-#                label: '0'
-#              1:
-#                label: '1'
-#              2:
-#                label: '2'
-#              3:
-#                label: '3'
-#              4:
-#                label: '4'
-#              5:
-#                label: '5'
-#              6:
-#                label: '6'
-#              7:
-#                label: '7'
-#              8:
-#                label: '8'
-#              9:
-#                label: '9'
-#              10:
-#                label: '10'
-#              11:
-#                label: '11'
-#              12:
-#                label: '12'
-#              13:
-#                label: '13'
-#              14:
-#                label: '14'
-#              15:
-#                label: '15'
-#              16:
-#                label: '16'
-#              17:
-#                label: '17'
-#              18:
-#                label: '18'
-#              19:
-#                label: '19'
-#              20:
-#                label: '20'
-#              21:
-#                label: '21'
+      validation:
+        'TYPO3.Neos/Validation/IntegerValidator': TRUE
+    hue:
+      type: string
+      ui:
+        label: 'Hue'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'styles'
+      validation:
+        'TYPO3.Neos/Validation/RegularExpressionValidator':
+          regularExpression: '/^\#[0-9ABCDEF]{6}$/i'
+    lightness:
+      type: string
+      ui:
+        label: 'Lightness'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'styles'
+      validation:
+        'TYPO3.Neos/Validation/NumberRangeValidator':
+          minimum: -100
+          maximum: 100
+    saturation:
+      type: string
+      ui:
+        label: 'Saturation'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'styles'
+      validation:
+        'TYPO3.Neos/Validation/NumberRangeValidator':
+          minimum: -100
+          maximum: 100
+    gamma:
+      type: string
+      ui:
+        label: 'Gamma'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'styles'
+      validation:
+        'TYPO3.Neos/Validation/NumberRangeValidator':
+          minimum: 0.01
+          maximum: 10
+    invert_lightness:
+      type: boolean
+      defaultValue: 0
+      ui:
+        reloadIfChanged: TRUE
+        label: 'Invert Lightness'
+        inspector:
+          group: 'styles'
+    visibility:
+      type: string
+      ui:
+        label: 'Visibility'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'styles'
+          editor: 'TYPO3.Neos/Inspector/Editors/SelectBoxEditor'
+          editorOptions:
+            values:
+              'on':
+                label: 'On'
+              'off':
+                label: 'Off'
+              'simplified':
+                label: 'Simplified'
+    color:
+      type: string
+      ui:
+        label: 'Color'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'styles'
+      validation:
+        'TYPO3.Neos/Validation/RegularExpressionValidator':
+          regularExpression: '/^\#[0-9ABCDEF]{6}$/i'
+    weight:
+      type: integer
+      ui:
+        label: 'Weight'
+        reloadIfChanged: TRUE
+        inspector:
+          group: 'styles'
+      validation:
+        'TYPO3.Neos/Validation/NumberRangeValidator':
+          minimum: 0
+          maximum: 99999

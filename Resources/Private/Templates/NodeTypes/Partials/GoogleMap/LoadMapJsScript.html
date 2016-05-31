@@ -1,0 +1,35 @@
+<script type="text/javascript">
+	function loadMap{mapId}(mapId, options, styles, styledMapOptions, mapTypeId) {
+		var infoWindow = new google.maps.InfoWindow(),
+				styledMap = new google.maps.StyledMapType(styles, styledMapOptions);
+		map = new google.maps.Map(document.getElementById(mapId), options);
+		markerIndex = 0,
+				markerEl = document.getElementById('markers' + mapId + '-' + markerIndex);
+
+		options['mapTypeId'] = mapTypeId;
+
+		while (markerEl !== null && typeof markerEl !== 'undefined') {
+			var markerData = JSON.parse(markerEl.innerHTML),
+					marker = new google.maps.Marker({
+						position: new google.maps.LatLng(markerData.coordinateX, markerData.coordinateY),
+						map: map,
+						title: markerData.title
+					});
+
+			if (markerData.showInfoWindow) {
+				google.maps.event.addListener(marker, 'click', (function (marker, content) {
+					return function () {
+						infoWindow.setContent(content);
+						infoWindow.open(map, marker);
+					}
+				})(marker, markerData.infoWindowContent));
+			}
+
+			markerIndex++;
+			markerEl = document.getElementById('markers' + mapId + '-' + markerIndex);
+		}
+
+		map.mapTypes.set('map_style', styledMap);
+		map.setMapTypeId('map_style');
+	}
+</script>

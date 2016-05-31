@@ -58,7 +58,7 @@ prototype(Mrf.Map:GoogleMap) < prototype(TYPO3.Neos:Content) {
 
         mapOptions = TYPO3.TypoScript:RawArray {
             zoom = ${String.toInteger(q(node).property('zoom'))}
-            scrollwheel = FALSE
+            scrollwheel = ${String.toBoolean(q(node).property('scrollwheel'))}
             center = TYPO3.TypoScript:RawArray {
                 lat = ${String.toFloat(q(node).property('centerCoordinateX'))}
                 lng = ${String.toFloat(q(node).property('centerCoordinateY'))}

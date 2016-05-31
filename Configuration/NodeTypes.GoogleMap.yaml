@@ -96,6 +96,13 @@
           group: 'settings'
       validation:
         'TYPO3.Neos/Validation/IntegerValidator': TRUE
+    scrollwheel:
+      type: boolean
+      defaultValue: TRUE
+      ui:
+        label: 'Scroll Wheel Zooming'
+        inspector:
+          group: 'settings'
     hue:
       type: string
       ui:

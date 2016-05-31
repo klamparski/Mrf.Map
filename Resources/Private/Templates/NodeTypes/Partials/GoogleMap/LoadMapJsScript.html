@@ -1,12 +1,12 @@
 <script type="text/javascript">
-	function loadMap{mapId}(mapId, options, styles, styledMapOptions, mapTypeId) {
-		var infoWindow = new google.maps.InfoWindow(),
-				styledMap = new google.maps.StyledMapType(styles, styledMapOptions);
-		map = new google.maps.Map(document.getElementById(mapId), options);
-		markerIndex = 0,
-				markerEl = document.getElementById('markers' + mapId + '-' + markerIndex);
-
+	window['loadMap{mapId}'] = function (mapId, options, styles, styledMapOptions, mapTypeId) {
 		options['mapTypeId'] = mapTypeId;
+
+		var infoWindow = new google.maps.InfoWindow(),
+				styledMap = new google.maps.StyledMapType(styles, styledMapOptions),
+				map = new google.maps.Map(document.getElementById(mapId), options),
+				markerIndex = 0,
+				markerEl = document.getElementById('markers' + mapId + '-' + markerIndex);
 
 		while (markerEl !== null && typeof markerEl !== 'undefined') {
 			var markerData = JSON.parse(markerEl.innerHTML),

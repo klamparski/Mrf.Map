@@ -10,7 +10,7 @@
 <f:render partial="GoogleMap/LoadMapJsScript" arguments="{mapId: mapId}" />
 
 <script type="text/javascript">
-loadMap{mapId}(
+window['loadMap{mapId}'](
 	'{mapId}',
 	{jsVars.mapOptions -> f:format.json() -> f:format.htmlentitiesDecode()},
 	{jsVars.styles -> f:format.json() -> f:format.htmlentitiesDecode()},

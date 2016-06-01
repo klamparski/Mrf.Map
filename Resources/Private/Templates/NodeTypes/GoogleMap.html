@@ -19,6 +19,7 @@ window['loadMap{mapId}'](
 	{jsVars.mapOptions -> f:format.json() -> f:format.htmlentitiesDecode()},
 	{jsVars.styles -> f:format.json() -> f:format.htmlentitiesDecode()},
 	{jsVars.styledMapOptions -> f:format.json() -> f:format.htmlentitiesDecode()},
+	{jsVars.settings -> f:format.json() -> f:format.htmlentitiesDecode()},
 	{jsVars.mapTypeId}
 );
 </script>
@@ -33,6 +34,7 @@ window['loadMap{mapId}'](
 					{jsVars.mapOptions -> f:format.json() -> f:format.htmlentitiesDecode()},
 					{jsVars.styles -> f:format.json() -> f:format.htmlentitiesDecode()},
 					{jsVars.styledMapOptions -> f:format.json() -> f:format.htmlentitiesDecode()},
+					{jsVars.settings -> f:format.json() -> f:format.htmlentitiesDecode()},
 					{jsVars.mapTypeId}
 				);
 			}, false);

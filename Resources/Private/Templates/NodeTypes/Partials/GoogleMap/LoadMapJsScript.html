@@ -1,20 +1,24 @@
 <script type="text/javascript">
-	window['loadMap{mapId}'] = function (mapId, options, styles, styledMapOptions, mapTypeId) {
-		options['mapTypeId'] = mapTypeId;
+	window['loadMap{mapId}'] = function (mapId, mapOptions, styles, styledMapOptions, settings, mapTypeId) {
+		mapOptions['mapTypeId'] = mapTypeId;
 
 		var infoWindow = new google.maps.InfoWindow(),
 				styledMap = new google.maps.StyledMapType(styles, styledMapOptions),
-				map = new google.maps.Map(document.getElementById(mapId), options),
+				map = new google.maps.Map(document.getElementById(mapId), mapOptions),
 				markerIndex = 0,
-				markerEl = document.getElementById('markers' + mapId + '-' + markerIndex);
+				markerEl = document.getElementById('markers' + mapId + '-' + markerIndex),
+				bounds = new google.maps.LatLngBounds();
 
 		while (markerEl !== null && typeof markerEl !== 'undefined') {
 			var markerData = JSON.parse(markerEl.innerHTML),
+					markerLatLng = new google.maps.LatLng(markerData.coordinateX, markerData.coordinateY),
 					marker = new google.maps.Marker({
-						position: new google.maps.LatLng(markerData.coordinateX, markerData.coordinateY),
+						position: markerLatLng,
 						map: map,
 						title: markerData.title
 					});
+
+			bounds.extend(markerLatLng);
 
 			if (markerData.infoWindowShow) {
 				google.maps.event.addListener(marker, 'click', (function (marker, content) {
@@ -30,5 +34,9 @@
 		}
 
 		map.mapTypes.set(mapTypeId, styledMap);
+
+		if (settings.fitBounds) {
+			map.fitBounds(bounds);
+		}
 	}
 </script>

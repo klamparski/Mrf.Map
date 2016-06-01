@@ -86,6 +86,13 @@
         reloadIfChanged: TRUE
         inspector:
           group: 'settings'
+    fitBounds:
+      type: boolean
+      defaultValue: TRUE
+      ui:
+        label: 'Fit markers bounds'
+        inspector:
+          group: 'settings'
     zoom:
       type: integer
       defaultValue: 12

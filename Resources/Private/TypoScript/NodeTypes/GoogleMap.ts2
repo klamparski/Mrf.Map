@@ -65,6 +65,10 @@ prototype(Mrf.Map:GoogleMap) < prototype(TYPO3.Neos:Content) {
             }
         }
 
+        settings = TYPO3.TypoScript:RawArray {
+            fitBounds = ${String.toBoolean(q(node).property('fitBounds'))}
+        }
+
         styledMapOptions = TYPO3.TypoScript:RawArray {
             name = ${q(node).property('title')}
         }

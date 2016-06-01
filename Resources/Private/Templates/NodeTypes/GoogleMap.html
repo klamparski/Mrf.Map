@@ -1,4 +1,8 @@
-{markers -> f:format.raw()}
+<f:security.ifAuthenticated>
+	<f:comment><!-- Display empty markers to avoid problems in BE (e.g. not selectable marker in Inspector ) --></f:comment>
+	{markers -> f:format.raw()}
+</f:security.ifAuthenticated>
+
 <div{attributes -> f:format.raw()}></div>
 
 <f:for each="{markersArray}" as="marker" iteration="iterator">
@@ -18,3 +22,20 @@ window['loadMap{mapId}'](
 	{jsVars.mapTypeId}
 );
 </script>
+
+<f:security.ifAuthenticated>
+	<f:comment><!-- Display only in BE --></f:comment>
+	<script type="text/javascript">
+		if (typeof document.addEventListener === 'function') {
+			document.addEventListener('Neos.PageLoaded', function(event) {
+				window['loadMap{mapId}'](
+					'{mapId}',
+					{jsVars.mapOptions -> f:format.json() -> f:format.htmlentitiesDecode()},
+					{jsVars.styles -> f:format.json() -> f:format.htmlentitiesDecode()},
+					{jsVars.styledMapOptions -> f:format.json() -> f:format.htmlentitiesDecode()},
+					{jsVars.mapTypeId}
+				);
+			}, false);
+		}
+	</script>
+</f:security.ifAuthenticated>

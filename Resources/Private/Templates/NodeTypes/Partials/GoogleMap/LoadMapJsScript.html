@@ -29,7 +29,6 @@
 			markerEl = document.getElementById('markers' + mapId + '-' + markerIndex);
 		}
 
-		map.mapTypes.set('map_style', styledMap);
-		map.setMapTypeId('map_style');
+		map.mapTypes.set(mapTypeId, styledMap);
 	}
 </script>

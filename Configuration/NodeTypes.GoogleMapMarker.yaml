@@ -10,6 +10,15 @@
         settings:
           label: 'Settings'
           position: 90
+        infoWindow:
+          label: 'Info Window'
+          position: 100
+          tab: 'infoWindow'
+      tabs:
+        infoWindow:
+          label: 'Info Window'
+          position: 10
+          icon: 'icon-info'
   properties:
     title:
       type: string
@@ -34,11 +43,21 @@
         label: 'Coordinate Y'
         inspector:
           group: 'settings'
-    showInfoWindow:
+    infoWindowShow:
       type: boolean
       defaultValue: 1
       ui:
         reloadIfChanged: TRUE
         label: 'Show Info Window'
         inspector:
-          group: 'settings'
+          group: 'infoWindow'
+    infoWindowContent:
+      type: 'string'
+      ui:
+        label: 'Content'
+        inspector:
+          group: 'infoWindow'
+          editor: 'TYPO3.Neos/Inspector/Editors/CodeEditor'
+          editorOptions:
+            buttonLabel: 'Edit HTML Content'
+

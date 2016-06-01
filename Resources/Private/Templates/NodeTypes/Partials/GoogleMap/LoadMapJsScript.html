@@ -16,7 +16,7 @@
 						title: markerData.title
 					});
 
-			if (markerData.showInfoWindow) {
+			if (markerData.infoWindowShow) {
 				google.maps.event.addListener(marker, 'click', (function (marker, content) {
 					return function () {
 						infoWindow.setContent(content);

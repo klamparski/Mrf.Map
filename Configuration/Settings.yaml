@@ -6,4 +6,4 @@ TYPO3:
     nodeTypes:
       groups:
         mrfMap:
-          label: 'Mrf - Map'
+          label: 'Google Map'

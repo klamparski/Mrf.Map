@@ -19,7 +19,7 @@ Or just add it manually to your composer.json by adding following line in "requi
 Then install the composer packages by command in the CLI:
 
 ```
-composer install
+composer update
 ```
 
 ## Extending map options

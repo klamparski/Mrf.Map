@@ -1,4 +1,28 @@
-# Extending map options
+# Neos CMS Google Maps Plugin
+
+Mrf.Map plugin adds easily customizable Google Map Node Type to your Neos CMS site.
+
+## Installation
+
+To install the package use composer require command in the CLI:
+
+```
+composer require mrf/map:1.*
+```
+
+Or just add it manually to your composer.json by adding following line in "require" section:
+
+```
+"mrf/map": "1.*"
+```
+
+Then install the composer packages by command in the CLI:
+
+```
+composer install
+```
+
+## Extending map options
  
 Mrf.Map package makes it easy to extend Google Map settings. If you would like to hardcode new settings globally for whole site, you just need to add few lines of TypoScript in your site package (e.g. Resources/Private/TypoScript/Root.ts2):
  

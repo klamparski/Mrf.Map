@@ -31,29 +31,6 @@ prototype(Mrf.Map:GoogleMap) < prototype(TYPO3.Neos:Content) {
                     }
                 }
             }
-
-#            1 = TYPO3.TypoScript:RawArray {
-#                featureType = 'road'
-#                elementType = 'geometry'
-#                stylers = TYPO3.TypoScript:RawArray {
-#                    0 = TYPO3.TypoScript:RawArray {
-#                        hue = '#002bff'
-#                    }
-#                    1 = TYPO3.TypoScript:RawArray {
-#                        visibility = 'simplified'
-#                    }
-#                }
-#            }
-#
-#            2 = TYPO3.TypoScript:RawArray {
-#                featureType = 'road'
-#                elementType = 'labels'
-#                stylers = TYPO3.TypoScript:RawArray {
-#                    0 = TYPO3.TypoScript:RawArray {
-#                        visibility = 'off'
-#                    }
-#                }
-#            }
         }
 
         mapOptions = TYPO3.TypoScript:RawArray {
